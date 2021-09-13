@@ -1,12 +1,11 @@
 ﻿using System;
-using tp2.Logic;
 
 
 namespace tp2.Logic
 {
     public class Operaciones
     {
-
+        private int varResultado;
         public void Punto1()
         {
             try
