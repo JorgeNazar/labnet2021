@@ -1,0 +1,15 @@
+﻿
+@model TP4.EF.MVC.Models.CustomersView
+@{
+    ViewBag.Title = "Agregar un Cliente";
+}
+
+<h2>Insertar</h2>
+
+@using (Html.BeginForm("InsertAction", "Customers", FormMethod.Post))
+{
+    <div>CustomerID: @Html.TextBoxFor(r => r.Id)</div>
+    <div>ContactName: @Html.TextBoxFor(r => r.ContactName)</div>
+    <div>Phone: @Html.TextBoxFor(r => r.Phone)</div>
+    <input type="submit" name="Guardar" value="Guardar" />
+}
