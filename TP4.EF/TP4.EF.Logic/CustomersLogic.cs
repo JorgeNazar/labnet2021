@@ -6,36 +6,63 @@ using TP4.EF.Entities;
 
 namespace TP4.EF.Logic
 {
-    public class CustomersLogic : ILogic<Customers>
+    public class CustomersLogic : BaseLogic, ILogic<Customers>
     {
-        NorthwindContext context = new NorthwindContext();
         public List<Customers> GetAll()
         {
-            var customers = from c in context.Customers select c;
-            return customers.ToList();
-
+            try
+            {
+                var customers = from c in context.Customers select c;
+                return customers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public Customers GetByID(string id)
         {
-            var customers = from c in context.Customers
-                          where c.CustomerID == id
-                          select c;
+            try
+            {
+                var customers = from c in context.Customers
+                              where c.CustomerID == id
+                              select c;
             
-            return customers.FirstOrDefault();
-            
+                return customers.FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int Add(Customers customers)
         {
-            context.Customers.Add(customers);
-            return context.SaveChanges();
+            try
+            {
+                context.Customers.Add(customers);
+                return context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(string id)
         {
-            context.Customers.Remove(GetByID(id));
-            context.SaveChanges();
+            try
+            {
+                context.Customers.Remove(GetByID(id));
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Modify(Customers paramCustomers)
@@ -43,7 +70,7 @@ namespace TP4.EF.Logic
             try
             {
                 var customers = context.Customers.Find(paramCustomers.CustomerID);
-                
+                if (customers == null) return; 
                 customers.CompanyName = paramCustomers.CompanyName;
                 customers.ContactName  = paramCustomers.ContactName;
                 customers.ContactTitle = paramCustomers.ContactTitle;
@@ -54,14 +81,11 @@ namespace TP4.EF.Logic
                 customers.Country = paramCustomers.Country;
                 customers.Phone = paramCustomers.Phone;
                 customers.Fax = paramCustomers.Fax;
-
                 
                 context.SaveChanges();
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

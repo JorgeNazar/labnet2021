@@ -52,6 +52,7 @@
     <Compile Include="Employees.cs" />
     <Compile Include="EmployeeTerritories.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BreakingBadAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

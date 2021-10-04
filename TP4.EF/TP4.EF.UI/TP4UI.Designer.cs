@@ -56,10 +56,11 @@ namespace TP4.EF.UI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.btnCrear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridDB)).BeginInit();
             this.groupCampos.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -95,6 +96,8 @@ namespace TP4.EF.UI
             // 
             // groupCampos
             // 
+            this.groupCampos.Controls.Add(this.btnModificar);
+            this.groupCampos.Controls.Add(this.btnCrear);
             this.groupCampos.Controls.Add(this.txtFax);
             this.groupCampos.Controls.Add(this.txtPhone);
             this.groupCampos.Controls.Add(this.txtCountry);
@@ -119,10 +122,11 @@ namespace TP4.EF.UI
             this.groupCampos.Controls.Add(this.label1);
             this.groupCampos.Location = new System.Drawing.Point(24, 369);
             this.groupCampos.Name = "groupCampos";
-            this.groupCampos.Size = new System.Drawing.Size(337, 359);
+            this.groupCampos.Size = new System.Drawing.Size(403, 332);
             this.groupCampos.TabIndex = 25;
             this.groupCampos.TabStop = false;
             this.groupCampos.Text = "Campos";
+            this.groupCampos.Visible = false;
             // 
             // txtFax
             // 
@@ -198,7 +202,6 @@ namespace TP4.EF.UI
             // 
             this.txtCustomerID.Location = new System.Drawing.Point(123, 39);
             this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.ReadOnly = true;
             this.txtCustomerID.Size = new System.Drawing.Size(182, 20);
             this.txtCustomerID.TabIndex = 36;
             // 
@@ -306,16 +309,27 @@ namespace TP4.EF.UI
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.txtBuscar);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Location = new System.Drawing.Point(380, 369);
+            this.groupBox1.Location = new System.Drawing.Point(601, 369);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(312, 97);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar por ID";
+            this.groupBox1.Visible = false;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(23, 59);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(264, 23);
+            this.btnBuscar.TabIndex = 39;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(105, 30);
+            this.txtBuscar.Location = new System.Drawing.Point(88, 30);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(182, 20);
             this.txtBuscar.TabIndex = 38;
@@ -329,19 +343,9 @@ namespace TP4.EF.UI
             this.label12.TabIndex = 37;
             this.label12.Text = "CustomerID";
             // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(23, 59);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(264, 23);
-            this.btnBuscar.TabIndex = 39;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(380, 478);
+            this.btnModificar.Location = new System.Drawing.Point(311, 42);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 27;
@@ -349,12 +353,21 @@ namespace TP4.EF.UI
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // btnCrear
+            // 
+            this.btnCrear.Location = new System.Drawing.Point(311, 89);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(75, 23);
+            this.btnCrear.TabIndex = 28;
+            this.btnCrear.Text = "Crear";
+            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+            // 
             // TP4UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 740);
-            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupCampos);
             this.Controls.Add(this.btnAllEmployees);
@@ -405,6 +418,7 @@ namespace TP4.EF.UI
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnCrear;
     }
 }
 

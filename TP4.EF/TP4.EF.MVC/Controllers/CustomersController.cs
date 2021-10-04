@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using TP4.EF.Entities;
@@ -13,14 +15,23 @@ namespace TP4.EF.MVC.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            List<Customers> customers = logic.GetAll();
-            List<CustomersView> customersView = customers.Select(c => new CustomersView
+            try
             {
-                Id = c.CustomerID.Trim(),
-                ContactName = c.ContactName,
-                Phone = c.Phone
-            }).ToList();
-            return View(customersView);
+                List<Customers> customers = logic.GetAll();
+                List<CustomersView> customersView = customers.Select(c => new CustomersView
+                {
+                    Id = c.CustomerID.Trim(),
+                    ContactName = c.ContactName,
+                    Phone = c.Phone
+                }).ToList();
+                return View(customersView);
+
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Insert()
@@ -29,43 +40,83 @@ namespace TP4.EF.MVC.Controllers
         }
         public ActionResult InsertAction(string Id, string ContactName, string Phone, string CompanyName)
         {
-            Customers customers = new Customers();
-            customers.CustomerID = Id;
-            customers.ContactName = ContactName;
-            customers.Phone = Phone;
-            customers.CompanyName = CompanyName;
-            logic.Add(customers);
-            return RedirectToAction("Index");
+            try
+            {
+                Customers customers = new Customers();
+                customers.CustomerID = Id;
+                customers.ContactName = ContactName;
+                customers.Phone = Phone;
+                customers.CompanyName = CompanyName;
+                logic.Add(customers);
+                return RedirectToAction("Index");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
         }
         public ActionResult Modify(string Id)
         {
-            Customers customers = logic.GetByID(Id);
-            CustomersView customersView = new CustomersView();
-            customersView.Id = customers.CustomerID;
-            customersView.CompanyName = customers.CompanyName;
-            customersView.ContactName = customers.ContactName;
-            customersView.Phone = customers.Phone;
-            return View(customersView);
+            try
+            {
+                Customers customers = logic.GetByID(Id);
+
+                CustomersView customersView = new CustomersView { 
+                    Id = customers.CustomerID,
+                    CompanyName = customers.CompanyName,
+                    ContactName = customers.ContactName,
+                    Phone = customers.Phone
+                };
+                return View(customersView);
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
 
         }
 
         public ActionResult ModifyAction(string Id, string ContactName, string Phone, string CompanyName)
         {
-            Customers customers = new Customers
+            try
             {
-                CustomerID = Id,
-                ContactName = ContactName,
-                Phone = Phone,
-                CompanyName = CompanyName
-            };
-            logic.Modify(customers);
-            return RedirectToAction("Index");
+                Customers customers = new Customers
+                {
+                    CustomerID = Id,
+                    ContactName = ContactName,
+                    Phone = Phone,
+                    CompanyName = CompanyName
+                };
+                logic.Modify(customers);
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult Delete(string Id)
         {
-            logic.Delete(Id);
-            return RedirectToAction("Index");
+            try
+            {
+                logic.Delete(Id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }

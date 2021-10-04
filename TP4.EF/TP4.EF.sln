@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP4.EF.Test", "TP4.EF.Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP4.EF.MVC", "TP4.EF.MVC\TP4.EF.MVC.csproj", "{609BBF96-1C1A-4DCF-BDD4-21FDFD6977F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP4.EF.API", "TP4.EF.API\TP4.EF.API.csproj", "{4260DAD5-EC22-463A-820D-D8ED1DF9C052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{609BBF96-1C1A-4DCF-BDD4-21FDFD6977F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609BBF96-1C1A-4DCF-BDD4-21FDFD6977F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609BBF96-1C1A-4DCF-BDD4-21FDFD6977F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4260DAD5-EC22-463A-820D-D8ED1DF9C052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4260DAD5-EC22-463A-820D-D8ED1DF9C052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4260DAD5-EC22-463A-820D-D8ED1DF9C052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4260DAD5-EC22-463A-820D-D8ED1DF9C052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

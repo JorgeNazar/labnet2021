@@ -17,12 +17,21 @@ namespace TP4.EF.UI
         private void btnAllCustomer_Click(object sender, EventArgs e)
         {
             var clientes = customerLogic.GetAll();
+            if (clientes != null)
+            {
+                txtCustomerID.ReadOnly = false;
+                groupCampos.Visible = true;
+                groupBox1.Visible = true;
+            }
+
             gridDB.DataSource = clientes;
         }
 
         private void btnAllEmployees_Click(object sender, EventArgs e)
         {
             var empleados = employeesLogic.GetAll();
+            groupCampos.Visible = false;
+            groupBox1.Visible = false;
             gridDB.DataSource = empleados;
             
         }
@@ -37,7 +46,8 @@ namespace TP4.EF.UI
                     MessageBox.Show("No Existe el ID");
                 }
                 else
-                { 
+                {
+                    txtCustomerID.ReadOnly = true;
                     txtCustomerID.Text = cliente.CustomerID;
                     txtCompanyName.Text = cliente.CompanyName;
                     txtContactName.Text = cliente.ContactName;
@@ -71,5 +81,34 @@ namespace TP4.EF.UI
 
             customerLogic.Modify(customer);
         }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Customers customer = new Customers
+                {
+
+                    CustomerID = txtCustomerID.Text,
+                    CompanyName = txtCompanyName.Text,
+                    ContactName = txtContactName.Text,
+                    ContactTitle = txtContactTitle.Text,
+                    Address = txtAddress.Text,
+                    City = txtCity.Text,
+                    Region = txtRegion.Text,
+                    PostalCode = txtPostalCode.Text,
+                    Country = txtCountry.Text,
+                    Phone = txtPhone.Text,
+                    Fax = txtFax.Text
+                };
+                customerLogic.Add(customer);
+                MessageBox.Show("Se generó un cliente nuevo");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrio un error: {ex.Message}");
+            }
+        }
+
     }
 }

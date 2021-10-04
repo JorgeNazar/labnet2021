@@ -6,10 +6,9 @@ using TP4.EF.Entities;
 
 namespace TP4.EF.Logic
 {
-    public class EmployeesLogic : ILogic<Employees>
+    public class EmployeesLogic : BaseLogic, ILogic<Employees>
     {
-        NorthwindContext context = new NorthwindContext();
-
+        
         public int Add(Employees customers)
         {
             throw new NotImplementedException();
@@ -22,17 +21,30 @@ namespace TP4.EF.Logic
 
         public List<Employees> GetAll()
         {
-            var employees = from c in context.Employees select c;
-            return employees.ToList();
-
+            try
+            {
+                var employees = from c in context.Employees select c;
+                return employees.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Employees GetByID(int id)
         {
-            var employees = from c in context.Employees
-                            where c.EmployeeID == id
-                            select c;
-            return employees.FirstOrDefault();
+            try
+            {
+                var employees = from c in context.Employees
+                                where c.EmployeeID == id
+                                select c;
+                return employees.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Employees GetByID(string id)
