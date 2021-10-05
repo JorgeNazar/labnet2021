@@ -16,29 +16,48 @@ namespace TP4.EF.UI
 
         private void btnAllCustomer_Click(object sender, EventArgs e)
         {
-            var clientes = customerLogic.GetAll();
-            if (clientes != null)
+            try
             {
-                txtCustomerID.ReadOnly = false;
-                groupCampos.Visible = true;
-                groupBox1.Visible = true;
-            }
+                var clientes = customerLogic.GetAll();
+                if (clientes != null)
+                {
+                    txtCustomerID.ReadOnly = false;
+                    groupCampos.Visible = true;
+                    groupBox1.Visible = true;
+                }
+                gridDB.DataSource = clientes;
 
-            gridDB.DataSource = clientes;
+                lblTitle.Text = "CLIENTES";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrio un error: {ex.Message}");
+            }
         }
 
         private void btnAllEmployees_Click(object sender, EventArgs e)
         {
-            var empleados = employeesLogic.GetAll();
-            groupCampos.Visible = false;
-            groupBox1.Visible = false;
-            gridDB.DataSource = empleados;
-            
+            try
+            {
+                var empleados = employeesLogic.GetAll();
+                groupCampos.Visible = false;
+                groupBox1.Visible = false;
+                gridDB.DataSource = empleados;
+
+                lblTitle.Text = "EMPLEADOS";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrio un error: {ex.Message}");
+            }
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Customers cliente = customerLogic.GetByID(txtBuscar.Text);
+            try
+            {
+                Customers cliente = customerLogic.GetByID(txtBuscar.Text);
            
                 //gridDB.SelectedCells[2];
                 if (cliente == null)
@@ -60,26 +79,43 @@ namespace TP4.EF.UI
                     txtPhone.Text = cliente.Phone;
                     txtFax.Text = cliente.Fax;
                 }
-            
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrio un error: {ex.Message}");
+            }
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Customers customer = new Customers();
+            try
+            {
+            Customers customer = new Customers
+                { 
+                    CustomerID  = txtCustomerID.Text,
+                    CompanyName = txtCompanyName.Text,
+                    ContactName = txtContactName.Text,
+                    ContactTitle = txtContactTitle.Text,
+                    Address = txtAddress.Text,
+                    City = txtCity.Text,
+                    Region = txtRegion.Text,
+                    PostalCode = txtPostalCode.Text,
+                    Country = txtCountry.Text,
+                    Phone = txtPhone.Text,
+                    Fax = txtFax.Text
+                };
+                customerLogic.Modify(customer);
+                
+                MessageBox.Show("Se modifico los datos del cliente");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrio un error: {ex.Message}");
+            }
 
-            customer.CustomerID  = txtCustomerID.Text;
-            customer.CompanyName = txtCompanyName.Text;
-            customer.ContactName = txtContactName.Text;
-            customer.ContactTitle = txtContactTitle.Text;
-            customer.Address = txtAddress.Text;
-            customer.City = txtCity.Text;
-            customer.Region = txtRegion.Text;
-            customer.PostalCode = txtPostalCode.Text;
-            customer.Country = txtCountry.Text;
-            customer.Phone = txtPhone.Text;
-            customer.Fax = txtFax.Text;
-
-            customerLogic.Modify(customer);
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -110,5 +146,6 @@ namespace TP4.EF.UI
             }
         }
 
+       
     }
 }

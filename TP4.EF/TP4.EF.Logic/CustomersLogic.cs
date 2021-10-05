@@ -17,7 +17,7 @@ namespace TP4.EF.Logic
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 

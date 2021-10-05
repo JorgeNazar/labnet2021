@@ -33,6 +33,8 @@ namespace TP4.EF.UI
             this.btnAllCustomer = new System.Windows.Forms.Button();
             this.btnAllEmployees = new System.Windows.Forms.Button();
             this.groupCampos = new System.Windows.Forms.GroupBox();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnCrear = new System.Windows.Forms.Button();
             this.txtFax = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
@@ -59,8 +61,7 @@ namespace TP4.EF.UI
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnCrear = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridDB)).BeginInit();
             this.groupCampos.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,14 +70,14 @@ namespace TP4.EF.UI
             // gridDB
             // 
             this.gridDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridDB.Location = new System.Drawing.Point(24, 73);
+            this.gridDB.Location = new System.Drawing.Point(24, 86);
             this.gridDB.Name = "gridDB";
-            this.gridDB.Size = new System.Drawing.Size(1317, 285);
+            this.gridDB.Size = new System.Drawing.Size(1317, 272);
             this.gridDB.TabIndex = 0;
             // 
             // btnAllCustomer
             // 
-            this.btnAllCustomer.Location = new System.Drawing.Point(24, 44);
+            this.btnAllCustomer.Location = new System.Drawing.Point(24, 12);
             this.btnAllCustomer.Name = "btnAllCustomer";
             this.btnAllCustomer.Size = new System.Drawing.Size(134, 23);
             this.btnAllCustomer.TabIndex = 1;
@@ -86,7 +87,7 @@ namespace TP4.EF.UI
             // 
             // btnAllEmployees
             // 
-            this.btnAllEmployees.Location = new System.Drawing.Point(164, 44);
+            this.btnAllEmployees.Location = new System.Drawing.Point(164, 12);
             this.btnAllEmployees.Name = "btnAllEmployees";
             this.btnAllEmployees.Size = new System.Drawing.Size(134, 23);
             this.btnAllEmployees.TabIndex = 2;
@@ -127,6 +128,26 @@ namespace TP4.EF.UI
             this.groupCampos.TabStop = false;
             this.groupCampos.Text = "Campos";
             this.groupCampos.Visible = false;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(311, 42);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 27;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnCrear
+            // 
+            this.btnCrear.Location = new System.Drawing.Point(311, 89);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(75, 23);
+            this.btnCrear.TabIndex = 28;
+            this.btnCrear.Text = "Crear";
+            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // txtFax
             // 
@@ -309,7 +330,7 @@ namespace TP4.EF.UI
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.txtBuscar);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Location = new System.Drawing.Point(601, 369);
+            this.groupBox1.Location = new System.Drawing.Point(457, 369);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(312, 97);
             this.groupBox1.TabIndex = 26;
@@ -343,31 +364,21 @@ namespace TP4.EF.UI
             this.label12.TabIndex = 37;
             this.label12.Text = "CustomerID";
             // 
-            // btnModificar
+            // lblTitle
             // 
-            this.btnModificar.Location = new System.Drawing.Point(311, 42);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnModificar.TabIndex = 27;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // btnCrear
-            // 
-            this.btnCrear.Location = new System.Drawing.Point(311, 89);
-            this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(75, 23);
-            this.btnCrear.TabIndex = 28;
-            this.btnCrear.Text = "Crear";
-            this.btnCrear.UseVisualStyleBackColor = true;
-            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(34, 51);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(0, 22);
+            this.lblTitle.TabIndex = 27;
             // 
             // TP4UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 740);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupCampos);
             this.Controls.Add(this.btnAllEmployees);
@@ -382,6 +393,7 @@ namespace TP4.EF.UI
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -419,6 +431,7 @@ namespace TP4.EF.UI
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 
