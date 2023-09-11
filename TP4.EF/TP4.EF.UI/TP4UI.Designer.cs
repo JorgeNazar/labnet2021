@@ -81,7 +81,7 @@ namespace TP4.EF.UI
             this.btnAllCustomer.Name = "btnAllCustomer";
             this.btnAllCustomer.Size = new System.Drawing.Size(134, 23);
             this.btnAllCustomer.TabIndex = 1;
-            this.btnAllCustomer.Text = "Cargar Clientes";
+            this.btnAllCustomer.Text = "Cargar ";
             this.btnAllCustomer.UseVisualStyleBackColor = true;
             this.btnAllCustomer.Click += new System.EventHandler(this.btnAllCustomer_Click);
             // 
