@@ -1,0 +1,15 @@
+﻿@model TP4.EF.MVC.Models.CustomersView
+@{
+    ViewBag.Title = "Modificar un Cliente";
+}
+
+<h2>Modificar</h2>
+
+@using (Html.BeginForm("ModifyAction", "Customers", FormMethod.Post))
+{
+    <div>CustomerID: @Html.TextBoxFor(r => r.Id)</div>
+    <div>ContactName: @Html.TextBoxFor(r => r.ContactName)</div>
+    <div>CompanyName: @Html.TextBoxFor(r => r.CompanyName)</div>
+    <div>Phone: @Html.TextBoxFor(r => r.Phone)</div>
+    <input type="submit" name="Guardar" value="Guardar" />
+}
